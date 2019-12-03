@@ -19,23 +19,27 @@ public class Job {
 
     public Job() {
         this.id = nextId;
+//        System.out.println("ID before Increment: " + id);
         nextId++;
+//        System.out.println("ID after Increment: " + id);
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
+//        System.out.println("ID before Increment: " + id);
         this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
+//        System.out.println("ID after Increment: " + id);
     }
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields match.
 
     @Override
-    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Job)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
         return getId() == job.getId();
     }
@@ -45,10 +49,12 @@ public class Job {
         return Objects.hash(getId());
     }
 
+
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
     public int getId() {
+//        System.out.println(id);
         return id;
     }
 
