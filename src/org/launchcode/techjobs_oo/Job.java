@@ -19,27 +19,23 @@ public class Job {
 
     public Job() {
         this.id = nextId;
-//        System.out.println("ID before Increment: " + id);
         nextId++;
-//        System.out.println("ID after Increment: " + id);
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
-//        System.out.println("ID before Increment: " + id);
         this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
-//        System.out.println("ID after Increment: " + id);
     }
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields match.
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Job)) return false;
         Job job = (Job) o;
         return getId() == job.getId();
     }
@@ -96,5 +92,23 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    @Override
+    public String toString() {
+        if (this.name.equals("") && this.employer.getValue().equals("") && this.location.getValue().equals("") &&
+        this.positionType.getValue().equals("") && this.coreCompetency.getValue().equals("")) {
+            return "OOPS! This job does not seem to exist.";
+        } else {
+        return
+        "\n" +
+        "ID: " + this.id + "\n" +
+        "Name: " + (this.name.equals("") ? "Data not available" : this.name) + "\n" +
+        "Employer: " + (this.employer.getValue().equals("") ? "Data not available" : this.employer) + "\n" +
+        "Location: " + (this.location.getValue().equals("") ? "Data not available" : this.location) + "\n" +
+        "Position Type: " +  (this.positionType.getValue().equals("") ? "Data not available" : this.positionType) + "\n" +
+        "Core Competency: " + (this.coreCompetency.getValue().equals("") ? "Data not available" : this.coreCompetency) +
+        "\n";
+    }
     }
 }
